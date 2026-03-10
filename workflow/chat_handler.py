@@ -200,6 +200,7 @@ def handle_followup_question(
     user_input: str,
     previous_context: Dict[str, Any],
     recent_messages: List[Dict[str, str]],
+    active_products: Optional[List[Dict[str, Any]]] = None,
 ) -> str:
     """
     추가 질문 처리 — 이전 맥락을 참고하여 LLM이 직접 답변
@@ -216,6 +217,16 @@ def handle_followup_question(
     llm = ChatOpenAI(model=settings.openai_model, temperature=0.7, api_key=settings.openai_api_key)
 
     context_parts = []
+    if active_products:
+        lines = []
+        for p in active_products:
+            line = f"- [{p['category']}] {p['name']}"
+            if p.get('brand'):
+                line += f" ({p['brand']})"
+            if p.get('ingredients'):
+                line += f" / 성분: {p['ingredients']}"
+            lines.append(line)
+        context_parts.append("[사용자 등록 제품]\n" + "\n".join(lines))
     if previous_context.get("diagnosis_result"):
         context_parts.append(f"[이전 진단 결과]\n{previous_context['diagnosis_result']}")
     if previous_context.get("care_guide"):

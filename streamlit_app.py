@@ -242,6 +242,7 @@ def process_user_input(user_input: str) -> str:
                 user_input,
                 st.session_state.previous_context,
                 recent_messages,
+                active_products=st.session_state.get("cached_products"),
             )
 
         # 응답 추출 및 컨텍스트 업데이트
