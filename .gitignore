@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 환경 변수
+.env
+
+# 벡터 DB 데이터 (Python 모듈 파일은 git에 포함)
+vector_db/
+!vector_db/__init__.py
+!vector_db/vector_store.py
+*.db
+*.sqlite
+
+# VS Code Local History (API 키 등 민감 정보 포함 가능)
+.history/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 로그
+*.log
+
+# Streamlit
+.streamlit/secrets.toml

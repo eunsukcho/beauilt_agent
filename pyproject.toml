@@ -1,0 +1,40 @@
+[project]
+name = "beauilt-agent"
+version = "0.1.0"
+description = "뷰티 데일리팁 LLM 에이전트 챗봇 (LangGraph + RAG + Web Search)"
+readme = "README.md"
+# tiktoken/chromadb 등 일부 패키지는 Windows + Python 3.13에서
+# 사전 빌드 휠이 없어서 Rust/빌드툴이 필요할 수 있습니다.
+# 초보 개발자 경험을 위해, 호환성이 좋은 3.11~3.12로 고정합니다.
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  # LLM Agent
+  # NOTE: 0.1.x는 OpenAI Python 1.x와 충돌하는 경우가 있어
+  # 최신 LangChain 계열(0.2+)로 올려 호환성을 확보합니다.
+  "langchain>=0.2.0",
+  "langchain-openai>=0.1.0",
+  "langchain-community>=0.2.0",
+  # LangGraph
+  "langgraph>=0.0.40",
+  # Web search (현재는 DuckDuckGo만 사용)
+  "duckduckgo-search==4.1.1",
+  "ddgs>=4.1.1",
+  # Vector DB (0.5+는 pre-built wheel 제공 → Streamlit Cloud 빌드 오류 방지)
+  "chromadb>=0.5.0,<0.6.0",
+  # Env/config
+  "python-dotenv==1.0.0",
+  "pydantic>=2.7.4",
+  "pydantic-settings>=2.2.1",
+  # OpenAI
+  "openai>=1.6.1",
+  "tiktoken>=0.7,<1",
+  # Web UI
+  "streamlit==1.29.0",
+  "langchain-chroma>=0.2.3",
+]
+
+[tool.uv]
+# 기본 가상환경 폴더는 .venv (uv 기본값)
+# 필요하면 아래처럼 Python 버전/인덱스 등을 추가 설정할 수 있습니다.
+# required-version = ">=0.4.0"
+
